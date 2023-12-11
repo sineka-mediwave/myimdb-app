@@ -58,13 +58,19 @@ button {
   cursor: pointer;
 }
 button:hover {
-  background-color: rgba(245, 197, 24, 0.8);
+  background-color: #f5c518cc;
 }
 option {
   color: #000;
 }
 
 /* class components */
+.logo {
+  color: #f5c518cc;
+  font-size: 32px;
+  text-shadow: 1px 1px #ccc;
+}
+
 .titleBar {
   height: 60px;
   margin-bottom: 20px;

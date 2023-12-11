@@ -5,7 +5,6 @@ import FormInputs from "./FormInput";
 interface IForm {
   type: string;
   addUser?: (u: IUserData) => void;
-  //   getMovie?: IUserData;
 }
 
 const UserForm: React.FC<IForm> = ({ type, addUser }) => {
