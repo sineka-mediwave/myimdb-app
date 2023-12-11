@@ -25,7 +25,6 @@ const UserForm: React.FC<IForm> = ({ type, addUser }) => {
     e.preventDefault();
     if (addUser) {
       addUser(user);
-      console.log(user);
     }
   }
 
@@ -38,18 +37,21 @@ const UserForm: React.FC<IForm> = ({ type, addUser }) => {
               label="Enter First name"
               type="text"
               name="first_name"
+              value={user.first_name}
               handleChange={handleChange}
             />
             <FormInputs
               label="Enter Last name"
               type="text"
               name="last_name"
+              value={user.last_name}
               handleChange={handleChange}
             />
             <FormInputs
               label="Enter User name"
               type="text"
               name="user_name"
+              value={user.user_name}
               handleChange={handleChange}
             />
           </>
@@ -59,6 +61,7 @@ const UserForm: React.FC<IForm> = ({ type, addUser }) => {
             label="Enter email ID"
             type="email"
             name="email"
+            value={user.email}
             handleChange={handleChange}
           />
           <FormInputs
@@ -67,6 +70,7 @@ const UserForm: React.FC<IForm> = ({ type, addUser }) => {
             name="user_password"
             min="8"
             max="20"
+            value={user.user_password}
             handleChange={handleChange}
           />
         </div>

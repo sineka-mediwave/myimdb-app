@@ -1,10 +1,13 @@
 import Layout from "../components/Layout";
 import UserForm from "../components/SignupForm";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IUserData } from "../type";
 import { addUser } from "../services/api";
+import { useState } from "react";
 
 const Signup = () => {
+  const navigate = useNavigate();
+  let [message, setMessage] = useState("");
   async function handleAdd(u: IUserData) {
     try {
       const userPayload = {
@@ -15,9 +18,13 @@ const Signup = () => {
         user_password: u.user_password,
       };
       const response = await addUser(userPayload);
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
+      console.log(response);
+      setMessage(response.data.message);
+      navigate("/login");
+    } catch (error: any) {
+      setMessage(error.response.data.message[0]);
+      //   console.log(error.response.data.message[0]);
+      console.log(error.response.data.message);
     }
   }
 
@@ -27,6 +34,7 @@ const Signup = () => {
         <h2>SIGNUP</h2>
         <div className="form-cover">
           <UserForm type="signup" addUser={handleAdd} />
+          {message && <p>{message}</p>}
           <Link to="/login" role="button" className="form-button">
             Login account
           </Link>
