@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { IUserData } from "../type";
 import FormInputs from "./FormInput";
-import { Link } from "react-router-dom";
-import Loading from "./Loading";
 // import FormButtons from "./FormButtons";
 interface IForm {
   type: string;
@@ -11,9 +9,10 @@ interface IForm {
 }
 
 const UserForm: React.FC<IForm> = ({ type, addUser }) => {
-  const [isLoading, setIsLoading] = useState(false);
-
   const [user, setUser] = useState<IUserData>({
+    first_name: "",
+    last_name: "",
+    user_name: "",
     email: "",
     user_password: "",
   });
@@ -24,7 +23,6 @@ const UserForm: React.FC<IForm> = ({ type, addUser }) => {
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setIsLoading(true);
     if (addUser) {
       addUser(user);
       console.log(user);
@@ -34,6 +32,28 @@ const UserForm: React.FC<IForm> = ({ type, addUser }) => {
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
       <>
+        {type == "signup" && (
+          <>
+            <FormInputs
+              label="Enter First name"
+              type="text"
+              name="first_name"
+              handleChange={handleChange}
+            />
+            <FormInputs
+              label="Enter Last name"
+              type="text"
+              name="last_name"
+              handleChange={handleChange}
+            />
+            <FormInputs
+              label="Enter User name"
+              type="text"
+              name="user_name"
+              handleChange={handleChange}
+            />
+          </>
+        )}
         <div className="form-input">
           <FormInputs
             label="Enter email ID"
@@ -44,15 +64,15 @@ const UserForm: React.FC<IForm> = ({ type, addUser }) => {
           <FormInputs
             label="Enter your password"
             type="password"
-            name="password"
+            name="user_password"
             min="8"
             max="20"
             handleChange={handleChange}
           />
         </div>
+
         <div className="form-input home-bar">
-          <button type="submit" className="form-btn" disabled={isLoading}>
-            {isLoading && <Loading />}
+          <button type="submit" className="form-btn">
             {type == "login" ? <>Login</> : <>SignUp</>}
           </button>
           <p>or</p>

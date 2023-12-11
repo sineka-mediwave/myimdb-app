@@ -1,5 +1,5 @@
 import Layout from "../components/Layout";
-import UserForm from "../components/SignupPage";
+import UserForm from "../components/SignupForm";
 import Model from "../components/Model";
 import { Link } from "react-router-dom";
 import { IUserData, IShowError } from "../type";
@@ -19,14 +19,15 @@ const Login = () => {
         email: u.email,
         user_password: u.user_password,
       };
-      await getUser(userPayload);
-      console.log(userPayload);
+      const response = await getUser(userPayload);
+      console.log(response.data);
       setShowModalMsg({
         action: "Succes",
         msg: "Welcome",
       });
     } catch (error) {
       if (error instanceof Error) {
+        console.log(error);
         setShowModalMsg({
           action: "Failed",
           msg: error.message,
