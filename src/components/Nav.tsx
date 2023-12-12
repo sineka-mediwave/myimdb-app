@@ -14,6 +14,11 @@ const Nav = () => {
         <li>
           <Link to="/login">LogIn</Link>
         </li>
+        <li>
+          <Link to="/u/account">
+            <div className="avatar">🧑‍🦱</div>
+          </Link>
+        </li>
       </ul>
     </nav>
   );

@@ -1,12 +1,13 @@
 import Layout from "../components/Layout";
 import UserForm from "../components/SignupForm";
 import Model from "../components/Model";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IUserData, IShowError } from "../type";
 import { useState } from "react";
 import { getToken } from "../services/api";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [showModalMsg, setShowModalMsg] = useState<IShowError>({
     action: "",
@@ -23,10 +24,7 @@ const Login = () => {
       console.log(res.data);
       const token = res.data.token;
       localStorage.setItem("token", token);
-      setShowModalMsg({
-        action: "Succes",
-        msg: "Welcome",
-      });
+      navigate("/");
     } catch (error) {
       if (error instanceof Error) {
         setShowModalMsg({

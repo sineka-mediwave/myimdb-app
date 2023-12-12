@@ -5,6 +5,7 @@ export interface IMovie {
   story?: string;
   language?: string;
   year: number | undefined;
+  rating?: number;
 }
 
 export interface IUserData {
@@ -12,7 +13,7 @@ export interface IUserData {
   last_name?: string;
   user_name?: string;
   email: string;
-  user_password: string;
+  user_password?: string;
 }
 
 export interface IShowError {

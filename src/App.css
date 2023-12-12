@@ -6,6 +6,7 @@
   font-family: "poppins", sans-serif;
   box-sizing: border-box;
   text-align: center;
+  color: #fff;
 }
 
 body {
@@ -70,7 +71,13 @@ option {
   font-size: 32px;
   text-shadow: 1px 1px #ccc;
 }
-
+.avatar {
+  width: 35px;
+  height: 35px;
+  padding-top: 3px;
+  border-radius: 50%;
+  background-color: #fff1b7;
+}
 .titleBar {
   height: 60px;
   margin-bottom: 20px;
@@ -84,6 +91,10 @@ option {
   display: flex;
   justify-content: right;
   list-style: none;
+}
+
+.navBar li {
+  margin-right: 20px;
 }
 
 .search-container {

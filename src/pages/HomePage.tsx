@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 import { IMovie } from "../type";
 import { getMovies } from "../services/api";
 import { Link } from "react-router-dom";
-import Loading from "../components/Loading";
+// import Loading from "../components/Loading";
 import MovieCard from "../components/MovieCard";
 // import Home from "../components/Movies";
 
@@ -28,13 +28,14 @@ const Home = () => {
       }
     }
     getMoviesFromAPI();
-  }, [movies]);
+  }, []);
+
   return (
     <Layout title="MyIMDb">
       {isLoading ? (
         <p>Loading Movies..</p>
       ) : (
-        <div className="gridBox">
+        <div className="movie-cards">
           {movies.map((m, i) => (
             <div className="movie-card" key={i}>
               <MovieCard movie={m} />

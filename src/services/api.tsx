@@ -5,10 +5,6 @@ const axiosInstance = axios.create({
   baseURL: "http://0.0.0.0:3456",
 });
 
-//get token
-const token = localStorage.getItem("token");
-const headers = { Authorization: `Bearer ${token}` };
-
 export const addUser = (payload: IUserData) => {
   return axiosInstance.post("/signup", payload);
 };
@@ -18,7 +14,10 @@ export const getToken = (payload: IUserData) => {
 };
 
 export const getUser = () => {
-  return axiosInstance.post("/users/u", { headers });
+  //get token
+  const token = localStorage.getItem("token");
+  const headers = { Authorization: `Bearer ${token}` };
+  return axiosInstance.get("/u/account", { headers });
 };
 export const getMovies = () => {
   return axiosInstance.get("/movies");
