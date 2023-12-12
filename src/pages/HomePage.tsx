@@ -9,14 +9,12 @@ import MovieCard from "../components/MovieCard";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [refresh, setRefresh] = useState(false);
   const [movies, setMovies] = useState<IMovie[]>([]);
 
   useEffect(() => {
     async function getMoviesFromAPI() {
-      setIsLoading(true);
-
       try {
+        setIsLoading(true);
         const response = await getMovies();
         setMovies(response.data);
       } catch (error) {
@@ -38,7 +36,9 @@ const Home = () => {
         <div className="movie-cards">
           {movies.map((m, i) => (
             <div className="movie-card" key={i}>
-              <MovieCard movie={m} />
+              <Link to="/movies">
+                <MovieCard movie={m} />
+              </Link>
             </div>
           ))}
         </div>

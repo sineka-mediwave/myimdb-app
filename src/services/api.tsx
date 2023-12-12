@@ -5,6 +5,13 @@ const axiosInstance = axios.create({
   baseURL: "http://0.0.0.0:3456",
 });
 
+const axiosHeader = axios.create({
+  baseURL: "http://0.0.0.0:3456",
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+  },
+});
+
 export const addUser = (payload: IUserData) => {
   return axiosInstance.post("/signup", payload);
 };
@@ -14,7 +21,6 @@ export const getToken = (payload: IUserData) => {
 };
 
 export const getUser = () => {
-  //get token
   const token = localStorage.getItem("token");
   const headers = { Authorization: `Bearer ${token}` };
   return axiosInstance.get("/u/account", { headers });
@@ -24,7 +30,7 @@ export const getMovies = () => {
 };
 
 export const addMovie = (payload: IMovie) => {
-  return axiosInstance.post("/movies", payload);
+  return axiosHeader.post("/movies", payload);
 };
 
 export const updateMovie = (payload: IMovie, movieId: number) => {

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 const Nav = () => {
+  const token = localStorage.getItem("token");
   return (
     <nav className="titleBar">
       <Link to="/" className="logo">
@@ -11,9 +12,15 @@ const Nav = () => {
         {/* <li>
           <Link to="/signup">SignUp</Link>
         </li> */}
-        <li>
-          <Link to="/login">LogIn</Link>
-        </li>
+        {token ? (
+          <li>
+            <Link to="/addMovie">addMovie</Link>
+          </li>
+        ) : (
+          <li>
+            <Link to="/login">LogIn</Link>
+          </li>
+        )}
         <li>
           <Link to="/u/account">
             <div className="avatar">🧑‍🦱</div>
