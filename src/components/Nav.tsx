@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import avatar from "../assets/free-avatar-370-456322.webp";
 const Nav = () => {
   const token = localStorage.getItem("token");
   return (
@@ -23,7 +23,7 @@ const Nav = () => {
         )}
         <li>
           <Link to="/u/account">
-            <div className="avatar">🧑‍🦱</div>
+            <img src={avatar} alt="avatar" className="avatar" />
           </Link>
         </li>
       </ul>

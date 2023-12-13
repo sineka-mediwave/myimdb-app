@@ -1,5 +1,4 @@
 import { IMovie } from "../type";
-import { Link } from "react-router-dom";
 interface IMovieCard {
   movie: IMovie;
 }
@@ -7,7 +6,7 @@ interface IMovieCard {
 const MovieCard: React.FC<IMovieCard> = ({ movie }) => {
   return (
     <div id={movie.id}>
-      <img src={movie.image} alt={movie.title} />
+      <img src={movie.image} alt={movie.title} className="card-img" />
       <div className="movie-content">
         <h3>{movie.title}</h3>
         <p>Language: {movie.language}</p>

@@ -6,6 +6,7 @@ import { IMovie, IShowError } from "../type";
 import { useState } from "react";
 
 const AddMovie = () => {
+  let [message, setMessage] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [showModalMsg, setShowModalMsg] = useState<IShowError>({
     action: "",
@@ -26,7 +27,10 @@ const AddMovie = () => {
         action: "Succes",
         msg: "Movie successfully Added",
       });
-    } catch (error) {
+    } catch (error: any) {
+      console.log(error);
+      setMessage(error.response.data.message[0]);
+
       if (error instanceof Error) {
         setShowModalMsg({
           action: "Failed",
@@ -42,6 +46,7 @@ const AddMovie = () => {
       <Layout title="movieForm">
         <h2>Add Movie</h2>
         <MovieForm type="add" addingMovie={handleAdd} />
+        {message && <p>{message}</p>}
       </Layout>
       {showModal && <Model showModalMsg={showModalMsg} />}
     </>

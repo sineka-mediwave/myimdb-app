@@ -1,13 +1,12 @@
 import { Link, useParams } from "react-router-dom";
-import { IMovie } from "../type";
+import { IgetMovie } from "../type";
 import Layout from "../components/Layout";
 import { useEffect, useState } from "react";
 import { getMovie } from "../services/api";
-import MovieCard from "../components/MovieCard";
 
 const MoviePage = () => {
   const { id } = useParams();
-  const [movie, setMovie] = useState<IMovie>({
+  const [movie, setMovie] = useState<IgetMovie>({
     image: "",
     title: "",
     story: "",
@@ -37,10 +36,19 @@ const MoviePage = () => {
     <Layout title="single movie">
       <div className="movie-cover">
         <h2>{movie.title}</h2>
-        <MovieCard movie={movie} />
-        <p>Description: {movie.story}</p>
-        <p>added By: {movie?.addedBy?.first_name}</p>
-        {/* <p>rating: {movie.rating}</p> */}
+        <img src={movie.image} alt={movie.title} className="card-img" />
+        <div className="movie-content">
+          <p>Description: {movie.story}</p>
+          <p>Language: {movie.language}</p>
+          <p>Year: {movie.year}</p>
+          <p>added By: {movie?.addedBy?.first_name}</p>
+          {movie.rating?.map((r, i) => (
+            <div key={i} className="rating-box">
+              <p>Rated By: {r.userRating.user_name}</p>
+              <p>Rating: {r.rating}</p>
+            </div>
+          ))}
+        </div>
         <Link to="/">Back</Link>
       </div>
     </Layout>

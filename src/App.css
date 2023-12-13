@@ -5,14 +5,9 @@
   padding: 0;
   font-family: "poppins", sans-serif;
   box-sizing: border-box;
-  text-align: center;
   color: #fff;
 }
 
-body {
-  background-color: #333;
-  height: 100vh;
-}
 h1,
 h2 {
   text-align: center;
@@ -75,13 +70,12 @@ option {
 .avatar {
   width: 35px;
   height: 35px;
-  padding-top: 3px;
   border-radius: 50%;
-  background-color: #fff1b7;
+  background-color: #f5c518cc;
 }
 .titleBar {
   height: 60px;
-  margin-bottom: 20px;
+  margin-bottom: 35px;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -113,7 +107,7 @@ option {
   border-radius: 0px 5px 5px 0px;
 }
 .movie-cards {
-  padding-top: 35px;
+  padding-bottom: 35px;
   width: 1400px;
   margin: 0 auto;
   display: grid;
@@ -142,7 +136,6 @@ option {
 .movie-card {
   width: 300px;
   padding: 10px;
-  /* background-color: #000; */
   border: 1px solid #1f1f1f;
   box-shadow: 0 0 10px #fff;
   transition: transform 0.2s;
@@ -153,12 +146,13 @@ option {
   transform: scale(1.1);
 }
 
-.movie-card img {
+.card-img {
   width: 278px;
   height: 392px;
   box-shadow: 0 0 2px #ccc;
 }
 .movie-content {
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -171,12 +165,6 @@ option {
   text-overflow: ellipsis;
 }
 
-.star {
-  color: #fff;
-}
-.gold {
-  color: #f5c518;
-}
 .form-cover {
   margin: 0px auto;
   padding: 30px;
@@ -233,10 +221,16 @@ form label {
 }
 
 .movie-cover {
-  margin: 0px auto;
+  margin: 20px auto;
   padding: 30px;
   width: 580px;
-  text-align: center;
   background-color: hwb(0 12% 88% / 0.942);
   box-shadow: 0 0 5px #ccc;
+}
+
+.rating-box {
+  margin: 10px 5px;
+  padding: 5px 10px;
+  background-color: #6d6d6d80;
+  border-radius: 5px;
 }

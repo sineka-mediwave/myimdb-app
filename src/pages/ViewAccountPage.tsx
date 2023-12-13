@@ -39,10 +39,7 @@ const Account = () => {
           <p>Last Name: </p>
           <span>{user.last_name}</span>
         </div>
-        <div className="bottom-line">
-          <p>Last Name: </p>
-          <span>{user.last_name}</span>
-        </div>
+
         <div className="bottom-line">
           <p>User Name: </p>
           <span>{user.user_name}</span>
@@ -51,11 +48,11 @@ const Account = () => {
           <p>email ID: </p>
           <span>{user.email}</span>
         </div>
+        <Link to="/login">Logout</Link>
       </div>
       {message && (
         <>
           <p>{message}</p>
-          <Link to="/login">First, login</Link>
         </>
       )}
     </Layout>
