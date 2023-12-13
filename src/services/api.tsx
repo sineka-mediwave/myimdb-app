@@ -20,13 +20,14 @@ export const getToken = (payload: IUserData) => {
   return axiosInstance.post("/login", payload);
 };
 
+export const getMovies = () => {
+  return axiosInstance.get("/movies");
+};
+
 export const getUser = () => {
   const token = localStorage.getItem("token");
   const headers = { Authorization: `Bearer ${token}` };
   return axiosInstance.get("/u/account", { headers });
-};
-export const getMovies = () => {
-  return axiosInstance.get("/movies");
 };
 
 export const addMovie = (payload: IMovie) => {
@@ -34,13 +35,13 @@ export const addMovie = (payload: IMovie) => {
 };
 
 export const updateMovie = (payload: IMovie, movieId: number) => {
-  return axiosInstance.put(`/movies/${movieId}`, payload);
+  return axiosHeader.put(`/movies/${movieId}`, payload);
 };
 
 export const deleteMovie = (movieId: number) => {
-  return axiosInstance.delete(`/movies/${movieId}`);
+  return axiosHeader.delete(`/movies/${movieId}`);
 };
 
-export const getMovie = async (movieId: number) => {
-  return axiosInstance.get(`/movies/${movieId}`);
+export const getMovie = async (movieId: string) => {
+  return axiosHeader.get(`/movies/${movieId}`);
 };

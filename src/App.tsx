@@ -20,7 +20,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/u/account" element={<Account />} />
           <Route path="/addMovie" element={<AddMovie />} />
-          <Route path="/movies" element={<Movie />} />
+          <Route path="/movies/:id" element={<Movie />} />
           <Route path="*" element={<NotfoundPage />} />
         </Routes>
       </BrowserRouter>

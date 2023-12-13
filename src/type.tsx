@@ -1,10 +1,14 @@
 export interface IMovie {
+  id?: string;
   image: string;
   title: string;
   story?: string;
   language?: string;
   year: number | undefined;
   rating?: number;
+  addedBy?: {
+    first_name: string;
+  };
 }
 
 export interface IUserData {

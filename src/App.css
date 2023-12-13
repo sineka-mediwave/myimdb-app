@@ -142,6 +142,7 @@ option {
 .movie-card {
   width: 300px;
   padding: 10px;
+  /* background-color: #000; */
   border: 1px solid #1f1f1f;
   box-shadow: 0 0 10px #fff;
   transition: transform 0.2s;
@@ -174,7 +175,7 @@ option {
   color: #fff;
 }
 .gold {
-  color: rgb(245, 197, 24);
+  color: #f5c518;
 }
 .form-cover {
   margin: 0px auto;
@@ -220,4 +221,22 @@ form label {
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #ccc;
+}
+
+.right-side {
+  color: #f5c518;
+  background-color: #000;
+}
+
+.right-side:hover {
+  color: #000;
+}
+
+.movie-cover {
+  margin: 0px auto;
+  padding: 30px;
+  width: 580px;
+  text-align: center;
+  background-color: hwb(0 12% 88% / 0.942);
+  box-shadow: 0 0 5px #ccc;
 }

@@ -34,9 +34,9 @@ const Home = () => {
         <p>Loading Movies..</p>
       ) : (
         <div className="movie-cards">
-          {movies.map((m, i) => (
-            <div className="movie-card" key={i}>
-              <Link to="/movies">
+          {movies.map((m) => (
+            <div className="movie-card" key={m.id}>
+              <Link to={`/movies/${m.id}`} role="button">
                 <MovieCard movie={m} />
               </Link>
             </div>
