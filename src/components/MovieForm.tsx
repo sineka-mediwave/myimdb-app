@@ -15,7 +15,7 @@ const MovieForm: React.FC<IForm> = ({ type, addingMovie }) => {
     title: "",
     story: "",
     language: "",
-    year: undefined,
+    year: 0,
   });
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;

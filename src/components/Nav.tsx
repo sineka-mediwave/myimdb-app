@@ -3,7 +3,7 @@ import avatar from "../assets/free-avatar-370-456322.webp";
 const Nav = () => {
   const token = localStorage.getItem("token");
   return (
-    <nav className="titleBar">
+    <nav className="titleBar flex-box">
       <Link to="/" className="logo">
         MYiMDB
       </Link>

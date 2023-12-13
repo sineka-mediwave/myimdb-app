@@ -73,12 +73,14 @@ option {
   border-radius: 50%;
   background-color: #f5c518cc;
 }
-.titleBar {
-  height: 60px;
-  margin-bottom: 35px;
+.flex-box {
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+.titleBar {
+  height: 60px;
+  margin-bottom: 35px;
   background-color: #000;
 }
 .navBar {

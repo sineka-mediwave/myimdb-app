@@ -49,7 +49,10 @@ const MoviePage = () => {
             </div>
           ))}
         </div>
-        <Link to="/">Back</Link>
+        <div className="flex-box">
+          <Link to="/">Back</Link>
+          <Link to="/addRating">addRating</Link>
+        </div>
       </div>
     </Layout>
   );

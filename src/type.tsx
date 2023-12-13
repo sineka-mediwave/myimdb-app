@@ -13,7 +13,7 @@ export interface IgetMovie {
   title: string;
   story?: string;
   language?: string;
-  year: number | undefined;
+  year: number;
   addedBy?: {
     first_name: string;
   };
@@ -27,6 +27,10 @@ export interface IUserData {
   user_password?: string;
 }
 
+export interface IRating {
+  rating: number;
+  movie_id: string;
+}
 export interface IShowError {
   action: string;
   msg: string;

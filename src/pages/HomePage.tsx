@@ -10,13 +10,16 @@ import MovieCard from "../components/MovieCard";
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [movies, setMovies] = useState<IMovie[]>([]);
+  const [rating, setRating] = useState([]);
 
   useEffect(() => {
     async function getMoviesFromAPI() {
       try {
         setIsLoading(true);
         const response = await getMovies();
-        setMovies(response.data);
+        console.log(response.data);
+        setMovies(response.data.getMovies);
+        setRating(response.data.overallRating);
       } catch (error) {
         if (error instanceof Error) {
           console.log(error.message);
@@ -36,6 +39,7 @@ const Home = () => {
         <div className="movie-cards">
           {movies.map((m) => (
             <div className="movie-card" key={m.id}>
+              {/* {rating.map((r) => r.movie_id == m.id)} */}
               <Link to={`/movies/${m.id}`} role="button">
                 <MovieCard movie={m} />
               </Link>

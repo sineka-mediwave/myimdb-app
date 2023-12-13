@@ -4,8 +4,10 @@ import Model from "../components/Model";
 import { addMovie } from "../services/api";
 import { IMovie, IShowError } from "../type";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddMovie = () => {
+  const navigate = useNavigate();
   let [message, setMessage] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [showModalMsg, setShowModalMsg] = useState<IShowError>({
@@ -39,6 +41,7 @@ const AddMovie = () => {
       }
     } finally {
       setShowModal(true);
+      navigate("/");
     }
   }
   return (
