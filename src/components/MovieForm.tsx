@@ -71,7 +71,7 @@ const MovieForm: React.FC<IForm> = ({ type, addingMovie }) => {
             handleChange={handleChange}
           />
         </div>
-        <div className="form-button">
+        <div className="flex-box">
           <button type="submit">
             {type == "edit" ? <>update</> : <>Add</>}
           </button>

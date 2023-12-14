@@ -16,7 +16,7 @@ const MoviePage = () => {
   let [message, setMessage] = useState("");
 
   useEffect(() => {
-    const singleMovie = async (id: string) => {
+    const singleMovie = async (id: string | undefined) => {
       try {
         if (id) {
           const res = await getMovie(id);

@@ -5,7 +5,7 @@ export interface IMovie {
   story?: string;
   language?: string;
   year: number | undefined;
-  rating?: number;
+  rating?: [{ rating: number }];
 }
 
 export interface IgetMovie {
@@ -29,6 +29,7 @@ export interface IUserData {
 
 export interface IRating {
   rating: number;
+  reviews: string;
   movie_id: string;
 }
 export interface IShowError {

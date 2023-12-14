@@ -10,7 +10,7 @@ import MovieCard from "../components/MovieCard";
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [movies, setMovies] = useState<IMovie[]>([]);
-  const [rating, setRating] = useState([]);
+  // const [rating, setRating] = useState([]);
 
   useEffect(() => {
     async function getMoviesFromAPI() {
@@ -18,8 +18,8 @@ const Home = () => {
         setIsLoading(true);
         const response = await getMovies();
         console.log(response.data);
-        setMovies(response.data.getMovies);
-        setRating(response.data.overallRating);
+        setMovies(response.data);
+        // setRating(response.data.overallRating);
       } catch (error) {
         if (error instanceof Error) {
           console.log(error.message);
