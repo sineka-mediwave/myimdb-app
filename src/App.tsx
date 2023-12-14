@@ -21,8 +21,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/u/account" element={<Account />} />
           <Route path="/addMovie" element={<AddMovie />} />
-          <Route path="/addRating" element={<AddRating />} />
           <Route path="/movies/:id" element={<Movie />} />
+          <Route path="/movies/:id/rating" element={<AddRating />} />
           <Route path="*" element={<NotfoundPage />} />
         </Routes>
       </BrowserRouter>

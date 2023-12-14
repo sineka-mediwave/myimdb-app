@@ -3,15 +3,14 @@ import { IRating } from "../type";
 import FormInputs from "./FormInput";
 import { Link } from "react-router-dom";
 // import FormButtons from "./FormButtons";
-interface IForm {
-  addRating?: (r: IRating) => void;
+interface IRatingForm {
+  addRating: (r: IRating) => void;
 }
 
-const RatingForm: React.FC<IForm> = ({ addRating }) => {
+const RatingForm: React.FC<IRatingForm> = ({ addRating }) => {
   const [rating, setRating] = useState<IRating>({
     rating: 0,
     reviews: "",
-    movie_id: "",
   });
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
@@ -30,7 +29,7 @@ const RatingForm: React.FC<IForm> = ({ addRating }) => {
       <>
         <div className="form-input">
           <FormInputs
-            label="Star count for Movie :"
+            label="Star count for Movie"
             type="number"
             name="rating"
             min="0"
@@ -39,11 +38,12 @@ const RatingForm: React.FC<IForm> = ({ addRating }) => {
             handleChange={handleChange}
           />
           <FormInputs
-            label="Review for the Movie :"
+            label="Review for the Movie"
             type="text"
             name="reviews"
             value={rating.reviews}
             handleChange={handleChange}
+            status={true}
           />
         </div>
 

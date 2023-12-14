@@ -236,3 +236,16 @@ form label {
   background-color: #6d6d6d80;
   border-radius: 5px;
 }
+
+.rating {
+  width: 180px;
+}
+
+.rating_star {
+  cursor: pointer;
+  color: #dabd18b2;
+}
+
+.rating_noStar {
+  color: none;
+}

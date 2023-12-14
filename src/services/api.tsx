@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IMovie, IUserData } from "../type";
+import { IMovie, IRating, IUserData } from "../type";
 
 const axiosInstance = axios.create({
   baseURL: "http://0.0.0.0:3456",
@@ -34,14 +34,18 @@ export const addMovie = (payload: IMovie) => {
   return axiosHeader.post("/movies", payload);
 };
 
-export const updateMovie = (payload: IMovie, movieId: number) => {
-  return axiosHeader.put(`/movies/${movieId}`, payload);
-};
+// export const updateMovie = (payload: IMovie, movieId: number) => {
+//   return axiosHeader.put(`/movies/${movieId}`, payload);
+// };
 
-export const deleteMovie = (movieId: number) => {
-  return axiosHeader.delete(`/movies/${movieId}`);
-};
+// export const deleteMovie = (movieId: number) => {
+//   return axiosHeader.delete(`/movies/${movieId}`);
+// };
 
 export const getMovie = async (movieId: string) => {
   return axiosHeader.get(`/movies/${movieId}`);
+};
+
+export const addRating = (payload: IRating, movieId: string) => {
+  return axiosHeader.post(`/movies/${movieId}/rating`, payload);
 };

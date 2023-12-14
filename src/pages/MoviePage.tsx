@@ -51,7 +51,9 @@ const MoviePage = () => {
         </div>
         <div className="flex-box">
           <Link to="/">Back</Link>
-          <Link to="/addRating">addRating</Link>
+          <Link to={`/movies/${id}/rating`} role="button" className="star">
+            ★addRating
+          </Link>
         </div>
       </div>
     </Layout>
