@@ -1,5 +1,5 @@
 import Layout from "../components/Layout";
-import UserForm from "../components/SignupForm";
+import UserForm from "../components/UserForm";
 import Model from "../components/Model";
 import { Link, useNavigate } from "react-router-dom";
 import { IUserData, IShowError } from "../type";

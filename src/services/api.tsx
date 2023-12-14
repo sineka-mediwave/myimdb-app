@@ -5,12 +5,18 @@ const axiosInstance = axios.create({
   baseURL: "http://0.0.0.0:3456",
 });
 
-const axiosHeader = axios.create({
-  baseURL: "http://0.0.0.0:3456",
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem("token")}`,
-  },
-});
+const setHeaders = () => {
+  const token = localStorage.getItem("token");
+  let headers = {};
+  if (token) {
+    headers = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+  }
+  return headers;
+};
 
 const token = localStorage.getItem("token");
 if (!token) {
@@ -28,28 +34,36 @@ export const getMovies = () => {
   return axiosInstance.get("/movies");
 };
 
+// export const getUser = () => {
+//   const token = localStorage.getItem("token");
+//   const headers = { Authorization: `Bearer ${token}` };
+//   return axiosInstance.get("/u/account", { headers });
+// };
+
 export const getUser = () => {
-  const token = localStorage.getItem("token");
-  const headers = { Authorization: `Bearer ${token}` };
-  return axiosInstance.get("/u/account", { headers });
+  return axiosInstance.get("/u/account", setHeaders());
+};
+
+export const updateUser = (payload: IUserData) => {
+  return axiosInstance.put("/u/account", payload, setHeaders());
 };
 
 export const addMovie = (payload: IMovie) => {
-  return axiosHeader.post("/movies", payload);
+  return axiosInstance.post("/movies", payload, setHeaders());
 };
 
 // export const updateMovie = (payload: IMovie, movieId: number) => {
-//   return axiosHeader.put(`/movies/${movieId}`, payload);
+//   return axiosInstance.put(`/movies/${movieId}`, payload);
 // };
 
 // export const deleteMovie = (movieId: number) => {
-//   return axiosHeader.delete(`/movies/${movieId}`);
+//   return axiosInstance.delete(`/movies/${movieId}`);
 // };
 
 export const getMovie = async (movieId: string) => {
-  return axiosHeader.get(`/movies/${movieId}`);
+  return axiosInstance.get(`/movies/${movieId}`, setHeaders());
 };
 
 export const addRating = (payload: IRating, movieId: string) => {
-  return axiosHeader.post(`/movies/${movieId}/rating`, payload);
+  return axiosInstance.post(`/movies/${movieId}/rating`, payload, setHeaders());
 };

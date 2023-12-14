@@ -17,7 +17,6 @@ const Home = () => {
       try {
         setIsLoading(true);
         const response = await getMovies();
-        console.log(response.data);
         setMovies(response.data);
         // setRating(response.data.overallRating);
       } catch (error) {
