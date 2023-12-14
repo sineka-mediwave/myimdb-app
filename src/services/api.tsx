@@ -12,6 +12,10 @@ const axiosHeader = axios.create({
   },
 });
 
+const token = localStorage.getItem("token");
+if (!token) {
+  axiosInstance.post("/login");
+}
 export const addUser = (payload: IUserData) => {
   return axiosInstance.post("/signup", payload);
 };

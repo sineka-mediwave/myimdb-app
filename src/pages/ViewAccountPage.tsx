@@ -14,6 +14,10 @@ const Account = () => {
   });
   let [message, setMessage] = useState("");
 
+  const handleDelete = () => {
+    localStorage.setItem("token", "");
+  };
+
   useEffect(() => {
     const viewAccount = async () => {
       try {
@@ -29,30 +33,33 @@ const Account = () => {
 
   return (
     <Layout title="view Account">
-      <h2>Welcome, {user.first_name}</h2>
-      <div className="account-card">
-        <div className="bottom-line">
-          <p>First Name: </p>
-          <span>{user.first_name}</span>
-        </div>
-        <div className="bottom-line">
-          <p>Last Name: </p>
-          <span>{user.last_name}</span>
-        </div>
-
-        <div className="bottom-line">
-          <p>User Name: </p>
-          <span>{user.user_name}</span>
-        </div>
-        <div className="bottom-line">
-          <p>email ID: </p>
-          <span>{user.email}</span>
-        </div>
-        <Link to="/login">Logout</Link>
-      </div>
-      {message && (
+      {message ? (
+        <p className="error">{message}</p>
+      ) : (
         <>
-          <p>{message}</p>
+          <h2>Welcome, {user.first_name}</h2>
+          <div className="account-card">
+            <div className="bottom-line">
+              <p>First Name: </p>
+              <span>{user.first_name}</span>
+            </div>
+            <div className="bottom-line">
+              <p>Last Name: </p>
+              <span>{user.last_name}</span>
+            </div>
+
+            <div className="bottom-line">
+              <p>User Name: </p>
+              <span>{user.user_name}</span>
+            </div>
+            <div className="bottom-line">
+              <p>email ID: </p>
+              <span>{user.email}</span>
+            </div>
+            <Link to="/login" role="button" onClick={handleDelete}>
+              Logout
+            </Link>
+          </div>
         </>
       )}
     </Layout>

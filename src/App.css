@@ -249,3 +249,8 @@ form label {
 .rating_noStar {
   color: none;
 }
+
+.error {
+  text-align: center;
+  color: #ff4848db;
+}

@@ -33,7 +33,7 @@ const Signup = () => {
         <div className="form-cover">
           <UserForm type="signup" addUser={handleAdd} />
           {message && <p>{message}</p>}
-          <Link to="/login" role="button" className="form-button">
+          <Link to="/login" role="button">
             Login account
           </Link>
         </div>
