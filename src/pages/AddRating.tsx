@@ -9,7 +9,6 @@ const AddRating = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   let [message, setMessage] = useState("");
-  //   let [rating, setRating] = useState(0);
 
   async function handleAdd(r: IRating) {
     try {
@@ -24,22 +23,6 @@ const AddRating = () => {
     }
   }
 
-  //   useEffect(() => {
-  //     const addRatingApi = async (id: string | undefined, r: IRating) => {
-  //       try {
-  //         const ratingPayload = r.rating;
-  //         if (id) {
-  //           const res = await addRating(id, ratingPayload);
-  //           console.log(res);
-  //         }
-  //       } catch (error: any) {
-  //         console.log(error);
-  //         setMessage(error.response.data.message);
-  //         console.log(message);
-  //       }
-  //     };
-  //     addRatingApi(id, rating);
-  //   }, [id]);
   return (
     <Layout title="rating form">
       <h2>Add Rating</h2>
