@@ -52,9 +52,9 @@ export const addMovie = (payload: IMovie) => {
   return axiosInstance.post("/movies", payload, setHeaders());
 };
 
-// export const updateMovie = (payload: IMovie, movieId: number) => {
-//   return axiosInstance.put(`/movies/${movieId}`, payload);
-// };
+export const updateMovie = (payload: IMovie, movieId: number) => {
+  return axiosInstance.put(`/movies/${movieId}`, payload);
+};
 
 // export const deleteMovie = (movieId: number) => {
 //   return axiosInstance.delete(`/movies/${movieId}`);

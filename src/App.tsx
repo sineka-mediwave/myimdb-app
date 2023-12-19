@@ -10,6 +10,7 @@ const Movie = lazy(() => import("./pages/MoviePage"));
 const AddMovie = lazy(() => import("./pages/AddmoviePage"));
 const AddRating = lazy(() => import("./pages/AddRating"));
 import Loading from "./components/Loading";
+import PrivateRoutes from "./services/PrivateRoutes";
 
 function App() {
   return (
@@ -19,10 +20,12 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/u/account" element={<Account />} />
-          <Route path="/addMovie" element={<AddMovie />} />
-          <Route path="/movies/:id" element={<Movie />} />
-          <Route path="/movies/:id/rating" element={<AddRating />} />
+          <Route element={<PrivateRoutes />}>
+            <Route path="/u/account" element={<Account />} />
+            <Route path="/addMovie" element={<AddMovie />} />
+            <Route path="/movies/:id" element={<Movie />} />
+            <Route path="/movies/:id/rating" element={<AddRating />} />
+          </Route>
           <Route path="*" element={<NotfoundPage />} />
         </Routes>
       </BrowserRouter>
