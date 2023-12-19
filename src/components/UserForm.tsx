@@ -62,9 +62,9 @@ const UserForm: React.FC<IForm> = ({ type, addUser }) => {
               name="confirm_password"
               min="8"
               max="20"
-              // value={}
               handleChange={ValidatePassword}
             />
+            <i>👀</i>
             {message && <p className="error">{message}</p>}
             <FormInputs
               label="Enter First name"

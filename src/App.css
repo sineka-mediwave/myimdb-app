@@ -5,7 +5,6 @@
   padding: 0;
   font-family: "poppins", sans-serif;
   box-sizing: border-box;
-  color: #fff;
 }
 
 h1,
@@ -158,6 +157,7 @@ option {
   display: flex;
   flex-direction: column;
   align-items: start;
+  color: #fff;
 }
 
 .movie-card h3 {
@@ -243,7 +243,7 @@ form label {
 
 .rating_star {
   cursor: pointer;
-  color: #dabd18b2;
+  color: #f5c518;
 }
 
 .rating_noStar {
@@ -290,3 +290,19 @@ form label {
   background-color: #ccc; /* Gray background for disabled buttons */
   cursor: not-allowed;
 }
+
+.pass-wrapper {
+  position: relative;
+  display: flex;
+  margin-bottom: 14px;
+}
+
+.pass-wrapper i {
+  position: absolute;
+  top: 38%;
+  right: 16%;
+}
+/* .pass-wrapper i:hover {
+  color: #00fcb6;
+  cursor: pointer;
+} */

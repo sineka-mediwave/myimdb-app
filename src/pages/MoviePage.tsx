@@ -1,9 +1,10 @@
 import { Link, useParams } from "react-router-dom";
-import { IgetMovie } from "../type";
+import { IRating, IgetMovie } from "../type";
 import Layout from "../components/Layout";
 import { useEffect, useState } from "react";
-import { getMovie } from "../services/api";
-
+import { addRating, getMovie } from "../services/api";
+import { Rating } from "react-simple-star-rating";
+// const Rating = require('react-rating');
 const MoviePage = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState<IgetMovie>({
@@ -14,6 +15,26 @@ const MoviePage = () => {
     year: 0,
   });
   let [message, setMessage] = useState("");
+  const [rating, setRating] = useState(0);
+
+  // // Catch Rating value
+  const handleRating = (rate: number) => {
+    setRating(rate);
+    AddRating(rate);
+  };
+
+  async function AddRating(r: number) {
+    try {
+      const ratingPayload: IRating = { rating: r };
+      if (id) {
+        await addRating(ratingPayload, id);
+      }
+    } catch (error: any) {
+      if (error) {
+        setMessage(error.response.data.message[0]);
+      }
+    }
+  }
 
   useEffect(() => {
     const singleMovie = async (id: string | undefined) => {
@@ -21,16 +42,13 @@ const MoviePage = () => {
         if (id) {
           const res = await getMovie(id);
           setMovie(res.data);
-          console.log(res);
         }
       } catch (error: any) {
-        console.log(error);
-        setMessage(error.response.data.message);
-        console.log(message);
+        setMessage(error.response.data.message[0]);
       }
     };
     singleMovie(id);
-  }, [id]);
+  }, [rating]);
 
   return (
     <Layout title="single movie">
@@ -51,10 +69,9 @@ const MoviePage = () => {
         </div>
         <div className="flex-box">
           <Link to="/">Back</Link>
-          <Link to={`/movies/${id}/rating`} role="button" className="star">
-            ★addRating
-          </Link>
+          <Rating onClick={handleRating} />
         </div>
+        {message && <p className="error">{message}</p>}
       </div>
     </Layout>
   );

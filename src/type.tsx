@@ -30,7 +30,6 @@ export interface IUserData {
 export interface IRating {
   rating: number;
   reviews?: string;
-  movie_id?: string;
 }
 export interface IShowError {
   action: string;

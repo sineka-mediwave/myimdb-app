@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import { IMovie } from "../type";
 import { getMovies } from "../services/api";
-import "react-pagination-js/dist/styles.css"; // import css
 import Movies from "../components/PaginationMovies";
 
 const Home = () => {

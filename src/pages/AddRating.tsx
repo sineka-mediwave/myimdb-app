@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Layout from "../components/Layout";
 import RatingForm from "../components/RatingForm";
 import { useState } from "react";
@@ -7,7 +7,6 @@ import { IRating } from "../type";
 
 const AddRating = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
   let [message, setMessage] = useState("");
 
   async function handleAdd(r: IRating) {
@@ -16,7 +15,7 @@ const AddRating = () => {
       if (id) {
         await addRating(ratingPayload, id);
       }
-      navigate(`/movies/${id}`);
+      setMessage("");
     } catch (error: any) {
       console.log(error);
       setMessage(error.response.data.message[0]);
