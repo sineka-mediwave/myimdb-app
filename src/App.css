@@ -251,6 +251,7 @@ form label {
 }
 
 .error {
+  padding: 5px;
   text-align: center;
   color: #ff4848db;
 }

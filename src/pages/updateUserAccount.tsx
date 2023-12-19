@@ -31,11 +31,11 @@ const Account = () => {
   const handleUpdate = async (user: IUserData) => {
     try {
       await updateUser(user);
-    } catch (error) {
+    } catch (error: any) {
       if (error instanceof Error) {
         console.error("Error deleting movie:", error);
-        // setMessage(error.response.data.message);
       }
+      setMessage(error.response.data.message);
     }
   };
 

@@ -4,7 +4,7 @@ import FormInputs from "./FormInput";
 // import FormButtons from "./FormButtons";
 interface IForm {
   type: string;
-  addUser?: (u: IUserData) => void;
+  addUser: (u: IUserData) => void;
 }
 
 const UserForm: React.FC<IForm> = ({ type, addUser }) => {
@@ -15,23 +15,57 @@ const UserForm: React.FC<IForm> = ({ type, addUser }) => {
     email: "",
     user_password: "",
   });
+  let [message, setMessage] = useState("");
+
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value === undefined ? "" : value });
   }
 
+  function ValidatePassword(e: React.ChangeEvent<HTMLInputElement>) {
+    e.target.value != user.user_password
+      ? setMessage("password does not match")
+      : setMessage("");
+  }
+
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (addUser) {
-      addUser(user);
-    }
+    addUser(user);
   }
 
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
       <>
+        <div className="form-input">
+          <FormInputs
+            label="Enter email ID"
+            type="email"
+            name="email"
+            value={user.email}
+            handleChange={handleChange}
+          />
+          <FormInputs
+            label="Enter your password"
+            type="password"
+            name="user_password"
+            min="8"
+            max="20"
+            value={user.user_password}
+            handleChange={handleChange}
+          />
+        </div>
         {type == "signup" && (
           <>
+            <FormInputs
+              label="Confirm password"
+              type="password"
+              name="confirm_password"
+              min="8"
+              max="20"
+              // value={}
+              handleChange={ValidatePassword}
+            />
+            {message && <p className="error">{message}</p>}
             <FormInputs
               label="Enter First name"
               type="text"
@@ -55,24 +89,6 @@ const UserForm: React.FC<IForm> = ({ type, addUser }) => {
             />
           </>
         )}
-        <div className="form-input">
-          <FormInputs
-            label="Enter email ID"
-            type="email"
-            name="email"
-            value={user.email}
-            handleChange={handleChange}
-          />
-          <FormInputs
-            label="Enter your password"
-            type="password"
-            name="user_password"
-            min="8"
-            max="20"
-            value={user.user_password}
-            handleChange={handleChange}
-          />
-        </div>
 
         <div className="form-input home-bar">
           <button type="submit" className="form-btn">

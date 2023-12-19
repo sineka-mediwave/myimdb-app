@@ -32,7 +32,7 @@ const Signup = () => {
         <h2>SIGNUP</h2>
         <div className="form-cover">
           <UserForm type="signup" addUser={handleAdd} />
-          {message && <p>{message}</p>}
+          {message && <p className="error">{message}</p>}
           <Link to="/login" role="button">
             Login account
           </Link>
