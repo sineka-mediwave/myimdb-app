@@ -30,8 +30,8 @@ export const getToken = (payload: IUserData) => {
   return axiosInstance.post("/login", payload);
 };
 
-export const getMovies = () => {
-  return axiosInstance.get("/movies");
+export const getMovies = (page: number, pagesize: number) => {
+  return axiosInstance.get(`/movies?page=${page}&pagesize=${pagesize}`);
 };
 
 // export const getUser = () => {

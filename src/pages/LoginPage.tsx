@@ -21,7 +21,6 @@ const Login = () => {
         user_password: u.user_password,
       };
       const res = await getToken(userPayload);
-      console.log(res.data);
       const token = res.data.token;
       localStorage.setItem("token", token);
       navigate("/");

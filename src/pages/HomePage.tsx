@@ -2,49 +2,85 @@ import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import { IMovie } from "../type";
 import { getMovies } from "../services/api";
-import { Link } from "react-router-dom";
-// import Loading from "../components/Loading";
-import MovieCard from "../components/MovieCard";
-// import Home from "../components/Movies";
+import "react-pagination-js/dist/styles.css"; // import css
+import Movies from "../components/PaginationMovies";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [totalPages, setTotalPages] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const [movies, setMovies] = useState<IMovie[]>([]);
-  // const [rating, setRating] = useState([]);
+
+  const handleSearch = () => {
+    console.log("clicked search");
+  };
+
+  async function getMoviesFromAPI(page: number) {
+    try {
+      setIsLoading(true);
+      const pageSize = 3;
+      const response = await getMovies(page, pageSize);
+      setMovies(response.data.movies);
+      console.log(response.data.length / pageSize);
+      setTotalPages(response.data.totalCount / pageSize);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.message);
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   useEffect(() => {
-    async function getMoviesFromAPI() {
-      try {
-        setIsLoading(true);
-        const response = await getMovies();
-        setMovies(response.data);
-        // setRating(response.data.overallRating);
-      } catch (error) {
-        if (error instanceof Error) {
-          console.log(error.message);
-        }
-      } finally {
-        setIsLoading(false);
-      }
+    getMoviesFromAPI(currentPage);
+  }, [currentPage]);
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
     }
-    getMoviesFromAPI();
-  }, []);
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
   return (
     <Layout title="MyIMDb">
       {isLoading ? (
         <p>Loading Movies..</p>
       ) : (
-        <div className="movie-cards">
-          {movies.map((m) => (
-            <div className="movie-card" key={m.id}>
-              {/* {rating.map((r) => r.movie_id == m.id)} */}
-              <Link to={`/movies/${m.id}`} role="button">
-                <MovieCard movie={m} />
-              </Link>
-            </div>
-          ))}
-        </div>
+        <>
+          <div className="search-container">
+            <input
+              type="text"
+              className="movie-search"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Search by movie title..."
+            />
+            <button className="search-button" onClick={handleSearch}>
+              search
+            </button>
+          </div>
+          <Movies movies={movies} />
+
+          <div className="pagination">
+            <button onClick={handlePrevPage} disabled={currentPage === 1}>
+              Previous Page
+            </button>
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+            >
+              Next Page
+            </button>
+          </div>
+        </>
       )}
     </Layout>
   );

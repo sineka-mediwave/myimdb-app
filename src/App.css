@@ -254,3 +254,38 @@ form label {
   text-align: center;
   color: #ff4848db;
 }
+
+/* search bar */
+.search-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.movie-search {
+  border-radius: 5px 0px 0px 5px;
+}
+.movie-search:focus {
+  outline: 2px solid rgb(245, 197, 24);
+}
+.search-button {
+  border-radius: 0px 5px 5px 0px;
+}
+
+/* pagination */
+.pagination {
+  margin-top: 25px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.pagination button {
+  background-color: rgb(245, 197, 24);
+  color: black;
+  padding: 10px 15px;
+  border: none;
+}
+
+.pagination button:disabled {
+  background-color: #ccc; /* Gray background for disabled buttons */
+  cursor: not-allowed;
+}
