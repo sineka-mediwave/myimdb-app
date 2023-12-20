@@ -3,6 +3,8 @@ import Layout from "../components/Layout";
 import { IMovie } from "../type";
 import { getMovies, searchMovies } from "../services/api";
 import Movies from "../components/PaginationMovies";
+// import Pagination from "@mui/material/Pagination";
+// import Stack from "@mui/material/Stack";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -13,15 +15,15 @@ const Home = () => {
   const [movies, setMovies] = useState<IMovie[]>([]);
 
   const handleSearch = () => {
-    searchMoviesApi(searchTerm);
-    setSearchTerm("");
+    getMoviesFromAPI(searchTerm, currentPage);
+    // setSearchTerm("");
   };
 
-  async function getMoviesFromAPI(page: number) {
+  async function getMoviesFromAPI(s: string, page: number) {
     try {
       setIsLoading(true);
       const pageSize = 3;
-      const response = await getMovies(page, pageSize);
+      const response = await getMovies(s, page, pageSize);
       setMovies(response.data.movies);
       setTotalPages(response.data.totalCount / pageSize);
       setMessage("");
@@ -33,21 +35,8 @@ const Home = () => {
     }
   }
 
-  async function searchMoviesApi(s: string) {
-    try {
-      setIsLoading(true);
-      const response = await searchMovies(s);
-      setMovies(response.data);
-      setMessage("");
-    } catch (error: any) {
-      setMessage(error.response.data.message || error.message);
-    } finally {
-      setIsLoading(false);
-    }
-  }
-
   useEffect(() => {
-    getMoviesFromAPI(currentPage);
+    getMoviesFromAPI(searchTerm, currentPage);
   }, [currentPage]);
 
   const handlePrevPage = () => {
@@ -94,6 +83,14 @@ const Home = () => {
               Next Page
             </button>
           </div>
+          {/* <Stack spacing={2}>
+            <Pagination
+              count={totalPages}
+              variant="outlined"
+              color="secondary"
+              onChange={}
+            />
+          </Stack> */}
         </>
       )}
     </Layout>
