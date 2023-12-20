@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import { IMovie } from "../type";
-import { getMovies } from "../services/api";
+import { getMovies, searchMovies } from "../services/api";
 import Movies from "../components/PaginationMovies";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
+  let [message, setMessage] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [movies, setMovies] = useState<IMovie[]>([]);
 
   const handleSearch = () => {
-    console.log("clicked search");
+    searchMoviesApi(searchTerm);
+    setSearchTerm("");
   };
 
   async function getMoviesFromAPI(page: number) {
@@ -21,12 +23,24 @@ const Home = () => {
       const pageSize = 3;
       const response = await getMovies(page, pageSize);
       setMovies(response.data.movies);
-      console.log(response.data.length / pageSize);
       setTotalPages(response.data.totalCount / pageSize);
-    } catch (error) {
-      if (error instanceof Error) {
-        console.log(error.message);
-      }
+      setMessage("");
+    } catch (error: any) {
+      console.log(error);
+      setMessage(error.response.data.message || error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  async function searchMoviesApi(s: string) {
+    try {
+      setIsLoading(true);
+      const response = await searchMovies(s);
+      setMovies(response.data);
+      setMessage("");
+    } catch (error: any) {
+      setMessage(error.response.data.message || error.message);
     } finally {
       setIsLoading(false);
     }
@@ -66,6 +80,7 @@ const Home = () => {
               search
             </button>
           </div>
+          {message && <p className="error">{message}</p>}
           <Movies movies={movies} />
 
           <div className="pagination">
@@ -74,7 +89,7 @@ const Home = () => {
             </button>
             <button
               onClick={handleNextPage}
-              disabled={currentPage === totalPages}
+              disabled={currentPage == Math.ceil(totalPages)}
             >
               Next Page
             </button>

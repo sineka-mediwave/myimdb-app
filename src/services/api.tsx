@@ -34,6 +34,10 @@ export const getMovies = (page: number, pagesize: number) => {
   return axiosInstance.get(`/movies?page=${page}&pagesize=${pagesize}`);
 };
 
+export const searchMovies = (search: string) => {
+  return axiosInstance.get(`/movies/search?search=${search}`);
+};
+
 // export const getUser = () => {
 //   const token = localStorage.getItem("token");
 //   const headers = { Authorization: `Bearer ${token}` };

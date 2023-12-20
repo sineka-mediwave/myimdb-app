@@ -64,7 +64,7 @@ const UserForm: React.FC<IForm> = ({ type, addUser }) => {
               max="20"
               handleChange={ValidatePassword}
             />
-            <i>👀</i>
+
             {message && <p className="error">{message}</p>}
             <FormInputs
               label="Enter First name"
@@ -92,7 +92,8 @@ const UserForm: React.FC<IForm> = ({ type, addUser }) => {
 
         <div className="form-input home-bar">
           <button type="submit" className="form-btn">
-            {type == "login" ? <>Login</> : <>SignUp</>}
+            {type}
+            {/* {type == "login" ? <>Login</> : <>SignUp</>} */}
           </button>
           <p>or</p>
         </div>

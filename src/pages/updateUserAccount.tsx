@@ -41,15 +41,11 @@ const Account = () => {
 
   return (
     <Layout title="view Account">
-      {message ? (
-        <p className="error">{message}</p>
-      ) : (
-        <>
-          <UserForm type="signup" addUser={handleUpdate} />
-          {message && <p className="error">{message}</p>}
-          <Link to="/u/account">Back</Link>
-        </>
-      )}
+      <>
+        <UserForm type="signup" addUser={handleUpdate} />
+        {message && <p className="error">{message}</p>}
+        <Link to="/u/account">Back</Link>
+      </>
     </Layout>
   );
 };
