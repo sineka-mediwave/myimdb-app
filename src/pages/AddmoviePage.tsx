@@ -30,8 +30,7 @@ const AddMovie = () => {
         msg: "Movie successfully Added",
       });
     } catch (error: any) {
-      console.log(error);
-      setMessage(error.response.data.message[0]);
+      setMessage(error.message || error.response.data.message[0]);
 
       if (error instanceof Error) {
         setShowModalMsg({

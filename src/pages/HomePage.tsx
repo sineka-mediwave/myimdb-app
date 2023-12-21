@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import { IMovie } from "../type";
-import { getMovies, searchMovies } from "../services/api";
+import { getMovies } from "../services/api";
 import Movies from "../components/PaginationMovies";
 // import Pagination from "@mui/material/Pagination";
 // import Stack from "@mui/material/Stack";
@@ -28,8 +28,7 @@ const Home = () => {
       setTotalPages(response.data.totalCount / pageSize);
       setMessage("");
     } catch (error: any) {
-      console.log(error);
-      setMessage(error.response.data.message || error.message);
+      setMessage(error.message || error.response.data.message);
     } finally {
       setIsLoading(false);
     }
