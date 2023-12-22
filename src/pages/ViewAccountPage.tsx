@@ -27,7 +27,6 @@ const Account = () => {
         const res = await getUser();
         setUser(res.data);
       } catch (error: any) {
-        console.log(error);
         setMessage(error.message || error.response.data.message);
       }
     };
@@ -41,13 +40,12 @@ const Account = () => {
 
   const handleUpdate = async () => {
     try {
-      const res = await updateUser(update);
-      console.log(res);
+      if (update) {
+        const res = await updateUser(update);
+        setUser(res.data);
+      }
     } catch (error: any) {
       setMessage(error.response.data.message);
-      if (error instanceof Error) {
-        console.error("Error deleting movie:", error);
-      }
     }
   };
 
@@ -83,26 +81,22 @@ const Account = () => {
               handleUpdate={handleUpdate}
               handleChange={handleChange}
             />
-            <UserDataField
-              user={user.email}
-              type="email"
-              label="Email ID: "
-              name="email"
-              handleChange={handleChange}
-              handleUpdate={handleUpdate}
-            />
-
-            <div className="flex-box">
-              <Link to="/" role="button">
-                Back
-              </Link>
-              <Link to="/login" role="button" onClick={handleDelete}>
-                Logout
-              </Link>
+            <div className="bottom-line">
+              <p>Email ID: </p>
+              <span> {user.email}</span>
             </div>
+            <button>Change Password</button>
           </div>
         </>
       )}
+      <div className="flex-box">
+        <Link to="/" role="button">
+          Back
+        </Link>
+        <Link to="/login" role="button" onClick={handleDelete}>
+          Logout
+        </Link>
+      </div>
     </Layout>
   );
 };

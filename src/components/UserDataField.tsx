@@ -38,7 +38,7 @@ const UserDataField: React.FC<IFormInput> = ({
             type={type}
             id={name}
             name={name}
-            value={value}
+            value={user}
             min={min}
             max={max}
             onChange={(e) => handleChange(e)}
