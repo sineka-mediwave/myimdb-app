@@ -36,6 +36,7 @@ const Account = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setupdate({ ...user, [name]: value === undefined ? "" : value });
+    console.log(user);
   };
 
   const handleUpdate = async () => {
@@ -45,6 +46,7 @@ const Account = () => {
         setUser(res.data);
       }
     } catch (error: any) {
+      console.log(error);
       setMessage(error.response.data.message);
     }
   };

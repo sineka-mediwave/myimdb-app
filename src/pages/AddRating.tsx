@@ -17,7 +17,6 @@ const AddRating = () => {
       }
       setMessage("");
     } catch (error: any) {
-      console.log(error);
       setMessage(error.response.data.message[0]);
     }
   }
