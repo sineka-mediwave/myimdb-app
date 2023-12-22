@@ -10,20 +10,21 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   let [message, setMessage] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortByMovie, setsortByMovie] = useState("");
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [movies, setMovies] = useState<IMovie[]>([]);
 
   const handleSearch = () => {
-    getMoviesFromAPI(searchTerm, currentPage);
+    getMoviesFromAPI(searchTerm, currentPage, sortByMovie);
     // setSearchTerm("");
   };
 
-  async function getMoviesFromAPI(s: string, page: number) {
+  async function getMoviesFromAPI(s: string, page: number, sortby: string) {
     try {
       setIsLoading(true);
       const pageSize = 3;
-      const response = await getMovies(s, page, pageSize);
+      const response = await getMovies(s, page, pageSize, sortby);
       setMovies(response.data.movies);
       setTotalPages(response.data.totalCount / pageSize);
       setMessage("");
@@ -35,8 +36,8 @@ const Home = () => {
   }
 
   useEffect(() => {
-    getMoviesFromAPI(searchTerm, currentPage);
-  }, [currentPage]);
+    getMoviesFromAPI(searchTerm, currentPage, sortByMovie);
+  }, [currentPage, sortByMovie]);
 
   const handlePrevPage = () => {
     if (currentPage > 1) {
@@ -48,6 +49,10 @@ const Home = () => {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
     }
+  };
+
+  const handleMovieSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setsortByMovie(e.target.value);
   };
 
   return (
@@ -67,6 +72,16 @@ const Home = () => {
             <button className="search-button" onClick={handleSearch}>
               search
             </button>
+            <select
+              className="filter-button"
+              onChange={(e) => handleMovieSort(e)}
+            >
+              <option value="title" selected disabled>
+                title
+              </option>
+              <option value="asc">A-Z</option>
+              <option value="desc">Z-A</option>
+            </select>
           </div>
           {message && <p className="error">{message}</p>}
           <Movies movies={movies} />

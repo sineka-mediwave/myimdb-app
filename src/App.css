@@ -306,3 +306,7 @@ form label {
   color: #00fcb6;
   cursor: pointer;
 } */
+
+.filter-button {
+  width: 70px;
+}
