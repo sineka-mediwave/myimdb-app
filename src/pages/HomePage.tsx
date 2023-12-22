@@ -82,6 +82,16 @@ const Home = () => {
               <option value="asc">A-Z</option>
               <option value="desc">Z-A</option>
             </select>
+            <select
+              className="filter-button"
+              // onChange={(e) => handleMovieSort(e)}
+            >
+              <option value="OverallRating" selected disabled>
+                rating
+              </option>
+              <option value="high">max</option>
+              <option value="low">min</option>
+            </select>
           </div>
           {message && <p className="error">{message}</p>}
           <Movies movies={movies} />
