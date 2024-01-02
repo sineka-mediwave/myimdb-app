@@ -60,12 +60,12 @@ export const addMovie = (payload: IMovie) => {
 };
 
 export const updateMovie = (payload: IMovie, movieId: number) => {
-  return axiosInstance.put(`/movies/${movieId}`, payload);
+  return axiosInstance.put(`/movies/${movieId}`, payload, setHeaders());
 };
 
-// export const deleteMovie = (movieId: number) => {
-//   return axiosInstance.delete(`/movies/${movieId}`);
-// };
+export const deleteMovieApi = (movieId: string) => {
+  return axiosInstance.delete(`/movies/${movieId}`, setHeaders());
+};
 
 export const getMovie = async (movieId: string) => {
   return axiosInstance.get(`/movies/${movieId}`, setHeaders());

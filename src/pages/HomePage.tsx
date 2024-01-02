@@ -75,8 +75,9 @@ const Home = () => {
             <select
               className="filter-button"
               onChange={(e) => handleMovieSort(e)}
+              defaultValue="title"
             >
-              <option value="title" selected disabled>
+              <option value="title" disabled>
                 title
               </option>
               <option value="asc">A-Z</option>
@@ -86,7 +87,7 @@ const Home = () => {
               className="filter-button"
               // onChange={(e) => handleMovieSort(e)}
             >
-              <option value="OverallRating" selected disabled>
+              <option value="OverallRating" disabled>
                 rating
               </option>
               <option value="high">max</option>
