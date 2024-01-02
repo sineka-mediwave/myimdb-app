@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Layout from "../components/Layout";
 import { getUser, updateUser } from "../services/api";
@@ -8,6 +8,7 @@ import UserDataField from "../components/UserDataField";
 // import UserForm from "../components/UserForm";
 
 const Account = () => {
+  const navigate = useNavigate();
   let [user, setUser] = useState<IUserData>({
     first_name: "",
     last_name: "",
@@ -51,6 +52,9 @@ const Account = () => {
     }
   };
 
+  const handlePage = () => {
+    navigate("/changePassword");
+  };
   return (
     <Layout title="view Account">
       {message ? (
@@ -87,7 +91,8 @@ const Account = () => {
               <p>Email ID: </p>
               <span> {user.email}</span>
             </div>
-            <button>Change Password</button>
+
+            <button onClick={handlePage}>Change Password</button>
           </div>
         </>
       )}

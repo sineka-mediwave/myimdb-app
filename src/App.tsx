@@ -6,6 +6,7 @@ import Home from "./pages/HomePage";
 const Login = lazy(() => import("./pages/LoginPage"));
 const Signup = lazy(() => import("./pages/SignupPage"));
 const Account = lazy(() => import("./pages/ViewAccountPage"));
+const ChangePassword = lazy(() => import("./pages/ChangePasswordPage"));
 const Movie = lazy(() => import("./pages/MoviePage"));
 const AddMovie = lazy(() => import("./pages/AddmoviePage"));
 const AddRating = lazy(() => import("./pages/AddRating"));
@@ -22,6 +23,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route element={<PrivateRoutes />}>
             <Route path="/u/account" element={<Account />} />
+            <Route path="/changePassword" element={<ChangePassword />} />
             <Route path="/addMovie" element={<AddMovie />} />
             <Route path="/movies/:id" element={<Movie />} />
             <Route path="/movies/:id/rating" element={<AddRating />} />

@@ -35,3 +35,8 @@ export interface IShowError {
   action: string;
   msg: string;
 }
+
+export interface IUserPassword {
+  oldPassword: string;
+  newPassword: string;
+}

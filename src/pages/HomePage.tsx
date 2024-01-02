@@ -17,7 +17,6 @@ const Home = () => {
 
   const handleSearch = () => {
     getMoviesFromAPI(searchTerm, currentPage, sortByMovie);
-    // setSearchTerm("");
   };
 
   async function getMoviesFromAPI(s: string, page: number, sortby: string) {

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IMovie, IRating, IUserData } from "../type";
+import { IMovie, IRating, IUserData, IUserPassword } from "../type";
 
 const axiosInstance = axios.create({
   baseURL: "http://0.0.0.0:3456",
@@ -53,6 +53,9 @@ export const getUser = () => {
 
 export const updateUser = (payload: IUserData) => {
   return axiosInstance.put("/u/account", payload, setHeaders());
+};
+export const updateUserPassword = (payload: IUserPassword) => {
+  return axiosInstance.put("/u/account/password", payload, setHeaders());
 };
 
 export const addMovie = (payload: IMovie) => {
