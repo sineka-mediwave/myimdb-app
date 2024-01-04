@@ -31,11 +31,17 @@ const ChangePasswordPage = () => {
     handleUpdate(password);
   }
 
+  const handleDelete = () => {
+    localStorage.setItem("token", "");
+  };
+
   const handleUpdate = async (p: IUserPassword) => {
     try {
       const res = await updateUserPassword(p);
-      setShowModel({ action: "success", msg: res.data });
+      setShowModel({ action: "success", msg: res.data.message });
+      handleDelete();
     } catch (error: any) {
+      console.log(error);
       setMessage(error.response.data.message);
     }
   };

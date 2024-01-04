@@ -13,7 +13,9 @@ const Model: React.FC<IModel> = ({ showModalMsg, toggleModel }) => {
           to="/"
           className="close"
           onClick={toggleModel && (() => toggleModel())}
-        ></Link>
+        >
+          X
+        </Link>
         <h3>{showModalMsg.action}</h3>
         <p>{showModalMsg.msg}</p>
       </article>

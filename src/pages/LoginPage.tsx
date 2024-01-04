@@ -8,11 +8,11 @@ import { getToken } from "../services/api";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [showModal, setShowModal] = useState(false);
-  const [showModalMsg, setShowModalMsg] = useState<IShowError>({
-    action: "",
-    msg: "",
-  });
+  const [message, setMessage] = useState(false);
+  // const [showModalMsg, setShowModalMsg] = useState<IShowError>({
+  //   action: "",
+  //   msg: "",
+  // });
 
   async function handleAdd(u: IUserData) {
     try {
@@ -24,15 +24,14 @@ const Login = () => {
       const token = res.data.token;
       localStorage.setItem("token", token);
       navigate("/");
-    } catch (error) {
-      if (error instanceof Error) {
-        setShowModalMsg({
-          action: "Failed",
-          msg: error.message,
-        });
-      }
-    } finally {
-      setShowModal(true);
+    } catch (error: any) {
+      // if (error instanceof Error) {
+      //   setShowModalMsg({
+      //     action: "Failed",
+      //     msg: error.message,
+      //   });
+      // }
+      setMessage(error.response.data.message);
     }
   }
 
@@ -45,9 +44,10 @@ const Login = () => {
           <Link to="/signup" role="button" className="form-button">
             create new account
           </Link>
+          {message && <p className="error">{message}</p>}
         </div>
       </Layout>
-      {showModal && <Model showModalMsg={showModalMsg} />}
+      {/* {showModalMsg && <Model showModalMsg={showModalMsg} />} */}
     </>
   );
 };
