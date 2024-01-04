@@ -1,84 +1,33 @@
 import { Link } from "react-router-dom";
 
 import Layout from "../components/Layout";
-import FormInputs from "../components/FormInput";
-import { IShowError, IUserPassword } from "../type";
+import { IShowError, IChangePassword } from "../type";
 import { useState } from "react";
 import { updateUserPassword } from "../services/api";
 import Modal from "../components/Model";
+import PasswordForm from "../components/PasswordForm";
 
 const ChangePasswordPage = () => {
-  const [password, setPassword] = useState<IUserPassword>({
-    oldPassword: "",
-    newPassword: "",
-  });
-  let [message, setMessage] = useState("");
   let [showModel, setShowModel] = useState<IShowError>();
-
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const { name, value } = e.target;
-    setPassword({ ...password, [name]: value === undefined ? "" : value });
-  }
-
-  function ValidatePassword(e: React.ChangeEvent<HTMLInputElement>) {
-    e.target.value != password.newPassword
-      ? setMessage("password does not match")
-      : setMessage("");
-  }
-
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    handleUpdate(password);
-  }
 
   const handleDelete = () => {
     localStorage.setItem("token", "");
   };
 
-  const handleUpdate = async (p: IUserPassword) => {
+  const handleUpdate = async (p: IChangePassword) => {
     try {
       const res = await updateUserPassword(p);
       setShowModel({ action: "success", msg: res.data.message });
       handleDelete();
     } catch (error: any) {
-      console.log(error);
-      setMessage(error.response.data.message);
+      setShowModel({ action: "success", msg: error.res.data.message });
     }
   };
 
   return (
-    <Layout title="error">
+    <Layout title="change-password">
       <h2>change Password</h2>
-      <form onSubmit={(e) => handleSubmit(e)} className="form-cover">
-        <FormInputs
-          label="Enter old password"
-          type="text"
-          name="oldPassword"
-          min="8"
-          max="20"
-          value={password.oldPassword}
-          handleChange={handleChange}
-        />
-        <FormInputs
-          label="Enter new password"
-          type="text"
-          name="newPassword"
-          min="8"
-          max="20"
-          value={password.newPassword}
-          handleChange={handleChange}
-        />
-        <FormInputs
-          label="Confirm password"
-          type="text"
-          name="confirm_password"
-          min="8"
-          max="20"
-          handleChange={ValidatePassword}
-        />
-        {message && <p className="error">{message}</p>}
-        <button>update</button>
-      </form>
+      <PasswordForm type="update password" addPassword={handleUpdate} />
       <Link to="/">Go back to home?</Link>
       {showModel && <Modal showModalMsg={showModel} />}
     </Layout>

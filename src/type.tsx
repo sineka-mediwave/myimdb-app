@@ -36,7 +36,11 @@ export interface IShowError {
   msg: string;
 }
 
-export interface IUserPassword {
+export interface IChangePassword {
   oldPassword: string;
   newPassword: string;
+}
+
+export interface IForgetPassword {
+  email: string;
 }

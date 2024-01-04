@@ -1,5 +1,11 @@
 import axios from "axios";
-import { IMovie, IRating, IUserData, IUserPassword } from "../type";
+import {
+  IMovie,
+  IRating,
+  IUserData,
+  IChangePassword,
+  IForgetPassword,
+} from "../type";
 
 const axiosInstance = axios.create({
   baseURL: "http://0.0.0.0:3456",
@@ -18,16 +24,20 @@ const setHeaders = () => {
   return headers;
 };
 
-const token = localStorage.getItem("token");
-if (!token) {
-  axiosInstance.post("/login");
-}
+// const token = localStorage.getItem("token");
+// if (!token) {
+//   axiosInstance.post("/login");
+// }
 export const addUser = (payload: IUserData) => {
   return axiosInstance.post("/signup", payload);
 };
 
 export const getToken = (payload: IUserData) => {
   return axiosInstance.post("/login", payload);
+};
+
+export const forgetPasswordApi = (payload: IForgetPassword) => {
+  return axiosInstance.post("/forget-password", payload);
 };
 
 export const getMovies = (
@@ -54,7 +64,7 @@ export const getUser = () => {
 export const updateUser = (payload: IUserData) => {
   return axiosInstance.put("/u/account", payload, setHeaders());
 };
-export const updateUserPassword = (payload: IUserPassword) => {
+export const updateUserPassword = (payload: IChangePassword) => {
   return axiosInstance.put("/u/account/password", payload, setHeaders());
 };
 

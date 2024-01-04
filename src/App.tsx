@@ -7,6 +7,7 @@ const Login = lazy(() => import("./pages/LoginPage"));
 const Signup = lazy(() => import("./pages/SignupPage"));
 const Account = lazy(() => import("./pages/ViewAccountPage"));
 const ChangePassword = lazy(() => import("./pages/ChangePasswordPage"));
+const ForgetPassword = lazy(() => import("./pages/ForgetPasswordPage"));
 const Movie = lazy(() => import("./pages/MoviePage"));
 const AddMovie = lazy(() => import("./pages/AddmoviePage"));
 const AddRating = lazy(() => import("./pages/AddRating"));
@@ -21,6 +22,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/ForgetPassword" element={<ForgetPassword />} />
+
           <Route element={<PrivateRoutes />}>
             <Route path="/u/account" element={<Account />} />
             <Route path="/changePassword" element={<ChangePassword />} />

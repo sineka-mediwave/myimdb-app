@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { IUserData } from "../type";
 import FormInputs from "./FormInput";
+import { Link } from "react-router-dom";
 // import FormButtons from "./FormButtons";
 interface IForm {
   type: string;
@@ -53,6 +54,11 @@ const UserForm: React.FC<IForm> = ({ type, addUser }) => {
             value={user.user_password}
             handleChange={handleChange}
           />
+          {type == "login" && (
+            <Link to="/forgetassword" role="button">
+              Forget password?
+            </Link>
+          )}
         </div>
         {type == "signup" && (
           <>
