@@ -33,6 +33,12 @@ const MovieForm: React.FC<IForm> = ({ type, addingMovie }) => {
     <form onSubmit={(e) => handleSubmit(e)} className="form-cover">
       <>
         <div className="form-input">
+          <input
+            type="file"
+            id="avatar"
+            name="avatar"
+            accept="image/png, image/jpeg"
+          />
           <FormInputs
             label="Enter image url"
             type="text"

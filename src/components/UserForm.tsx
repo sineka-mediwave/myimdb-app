@@ -55,7 +55,7 @@ const UserForm: React.FC<IForm> = ({ type, addUser }) => {
             handleChange={handleChange}
           />
           {type == "login" && (
-            <Link to="/forgetassword" role="button">
+            <Link to="/forgetPassword" role="button">
               Forget password?
             </Link>
           )}

@@ -18,7 +18,7 @@ function App() {
   return (
     <Suspense fallback={<Loading />}>
       <BrowserRouter>
-        <Routes>
+        <Routes>  
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
