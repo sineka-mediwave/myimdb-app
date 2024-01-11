@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 // import FormButtons from "./FormButtons";
 interface IForm {
   type: string;
-  addingMovie?: (m: IMovie) => void;
+  addingMovie?: (m: FormData) => void;
   //   getMovie?: IMovie;
 }
 
@@ -17,15 +17,35 @@ const MovieForm: React.FC<IForm> = ({ type, addingMovie }) => {
     language: "",
     year: 0,
   });
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     setMovie({ ...movie, [name]: value === undefined ? "" : value });
   }
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files && e.target.files[0];
+    if (file) {
+      setMovie({ ...movie, image: file });
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewUrl(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("image", movie.image);
+    formData.append("title", movie.title);
+    formData.append("story", movie.story);
+    formData.append("language", movie.language);
+    formData.append("year", movie.year.toString());
     if (addingMovie) {
-      addingMovie(movie);
+      addingMovie(formData);
     }
   }
 
@@ -33,19 +53,26 @@ const MovieForm: React.FC<IForm> = ({ type, addingMovie }) => {
     <form onSubmit={(e) => handleSubmit(e)} className="form-cover">
       <>
         <div className="form-input">
-          <input
-            type="file"
-            id="avatar"
-            name="avatar"
-            accept="image/png, image/jpeg"
-          />
-          <FormInputs
-            label="Enter image url"
-            type="text"
-            name="image"
-            value={movie.image}
-            handleChange={handleChange}
-          />
+          <label>
+            Upload image
+            <input
+              type="file"
+              name="image"
+              onChange={handleFileChange}
+              accept="image/png, image/jpeg"
+            />
+          </label>
+
+          {previewUrl && (
+            <div>
+              <img
+                src={previewUrl}
+                alt="File Preview"
+                className="preview-image"
+              />
+            </div>
+          )}
+
           <FormInputs
             label="Enter Movie Title"
             type="text"

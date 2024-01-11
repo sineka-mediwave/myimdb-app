@@ -2,7 +2,7 @@ import Layout from "../components/Layout";
 import MovieForm from "../components/MovieForm";
 import Model from "../components/Model";
 import { addMovie } from "../services/api";
-import { IMovie, IShowError } from "../type";
+import { IShowError } from "../type";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -15,16 +15,16 @@ const AddMovie = () => {
     msg: "",
   });
 
-  async function handleAdd(m: IMovie) {
+  async function handleAdd(movie: FormData) {
     try {
-      const moviePayload = {
-        image: m.image,
-        title: m.title,
-        story: m.story,
-        language: m.language,
-        year: m.year,
-      };
-      await addMovie(moviePayload);
+      // const moviePayload = {
+      //   image: m.image,
+      //   title: m.title,
+      //   story: m.story,
+      //   language: m.language,
+      //   year: m.year,
+      // };
+      await addMovie(movie);
       setShowModalMsg({
         action: "Succes",
         msg: "Movie successfully Added",

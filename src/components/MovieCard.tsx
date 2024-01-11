@@ -23,7 +23,11 @@ const MovieCard: React.FC<IMovieCard> = ({ movie }) => {
 
   return (
     <div id={movie.id}>
-      <img src={movie.image} alt={movie.title} className="card-img" />
+      <img
+        src={`http://localhost:3456/uploads/${movie.image}`}
+        alt={movie.title}
+        className="card-img"
+      />
       <div className="movie-content">
         <h3>{movie.title}</h3>
         <p>Language: {movie.language}</p>

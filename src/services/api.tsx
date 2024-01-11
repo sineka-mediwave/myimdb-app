@@ -68,7 +68,7 @@ export const updateUserPassword = (payload: IChangePassword) => {
   return axiosInstance.put("/u/account/password", payload, setHeaders());
 };
 
-export const addMovie = (payload: IMovie) => {
+export const addMovie = (payload: FormData) => {
   return axiosInstance.post("/movies", payload, setHeaders());
 };
 

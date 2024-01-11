@@ -80,7 +80,11 @@ const MoviePage = () => {
         {movie && (
           <>
             <h2>{movie.title}</h2>
-            <img src={movie.image} alt={movie.title} className="card-img" />
+            <img
+              src={`http://localhost:3456/uploads/${movie.image}`}
+              alt={movie.title}
+              className="card-img"
+            />
             <div className="movie-content">
               <p>Description: {movie.story}</p>
               <p>Language: {movie.language}</p>

@@ -16,6 +16,7 @@ const ForgetPasswordPage = () => {
       if (emailId) {
         const res = await forgetPasswordApi({ email: emailId });
         setShowModel({ action: "success", msg: res.data.message });
+        
       }
     } catch (error: any) {
       setMessage(error.message);

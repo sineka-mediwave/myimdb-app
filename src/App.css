@@ -307,3 +307,10 @@ form label {
 .filter-button {
   width: 80px;
 }
+
+.preview-image {
+  max-width: 100%;
+  max-height: 200px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 5px #ccc;
+}

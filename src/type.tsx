@@ -1,10 +1,10 @@
 export interface IMovie {
   id?: string;
-  image: string;
+  image: File | string;
   title: string;
-  story?: string;
-  language?: string;
-  year: number | undefined;
+  story: string;
+  language: string;
+  year: number;
   rating?: [{ rating: number }];
 }
 

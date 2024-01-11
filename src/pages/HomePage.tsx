@@ -82,7 +82,7 @@ const Home = () => {
               <option value="asc">A-Z</option>
               <option value="desc">Z-A</option>
             </select>
-            <select
+            {/* <select
               className="filter-button"
               // onChange={(e) => handleMovieSort(e)}
             >
@@ -91,7 +91,7 @@ const Home = () => {
               </option>
               <option value="high">max</option>
               <option value="low">min</option>
-            </select>
+            </select> */}
           </div>
           {message && <p className="error">{message}</p>}
           <Movies movies={movies} />
